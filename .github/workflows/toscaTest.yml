@@ -15,10 +15,9 @@ jobs:
           --data-urlencode 'client_secret=${{ secrets.CLIENT_SECRET }}' \
           --data-urlencode 'scope=E2GApi' \
           -o response.json
-      - name: read accesstoken
-        env:
-          ACCESS_TOKEN:$(cat response.json | jq .access_token)
       - name: trigger test on agent
+        env:
+          ACCESS_TOKEN: $(cat response.json | jq .access_token)
         run: |
           curl --location --request POST 'https://fhbgld.my.tricentis.com/default/_e2g/api/flowExecutions' \
           --header 'Content-Type: application/json' \
