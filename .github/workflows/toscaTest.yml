@@ -3,8 +3,6 @@ on: [push]
 jobs:
   test:
     runs-on: "ubuntu-latest"
-    env:
-      ACCESS_TOKEN:
 
     steps:    
       - name: get accesstoken
@@ -18,7 +16,8 @@ jobs:
           --data-urlencode 'scope=E2GApi' \
           -o response.json
       - name: read accesstoken
-        run: ${{env.ACCESS_TOKEN}}=$(cat response.json | jq .access_token)
+        env:
+          ACCESS_TOKEN:$(cat response.json | jq .access_token)
       - name: trigger test on agent
         run: |
           curl --location --request POST 'https://fhbgld.my.tricentis.com/default/_e2g/api/flowExecutions' \
