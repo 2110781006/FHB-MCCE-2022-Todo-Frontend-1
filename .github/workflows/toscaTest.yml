@@ -16,6 +16,6 @@ jobs:
           --data-urlencode 'scope=E2GApi' \
           -o response.json
       - name: read accesstoken
-        run: ACCESS_TOKEN=$(cat response.json | jq .access_token) & echo cat response.json | jq .access_token
+        run: ACCESS_TOKEN=$(cat response.json | jq .access_token) & echo cat response.json
       - name: print access token
         run: echo $ACCESS_TOKEN
