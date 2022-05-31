@@ -19,7 +19,7 @@ jobs:
       - name: trigger test on agent
         run: echo "ACCESS_TOKEN=$(cat response.json | jq .access_token)" >> $GITHUB_ENV
       - name: test
-        run: echo ${{ env.ACCESS_TOKEN }}
+        run: echo ${ env.ACCESS_TOKEN }
       - name: x
         run: |
           curl --location --request POST 'https://fhbgld.my.tricentis.com/default/_e2g/api/flowExecutions' \
