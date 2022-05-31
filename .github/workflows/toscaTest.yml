@@ -17,7 +17,7 @@ jobs:
           -o response.json
 
       - name: trigger test on agent
-        run: echo "ACCESS_TOKEN=$(cat response.json | jq .scope)" >> $GITHUB_ENV
+        run: echo "ACCESS_TOKEN=$(cat response.json | jq -r .access_token)" >> $GITHUB_ENV
       - name: test
         run: echo ${{ env.ACCESS_TOKEN }}
       - name: x
