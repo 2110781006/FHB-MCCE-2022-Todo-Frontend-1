@@ -23,7 +23,7 @@ jobs:
           --header 'Content-Type: application/json' \
           --header 'X-Tricentis: OK' \
           --header 'Accept-Language: de' \
-          --header 'Authorization: Bearer \$(cat response.json | jq .access_token)' \
+          --header 'Authorization: Bearer ${{(cat response.json | jq .access_token)}}' \
           --data-raw '{
             "flowId": "fad967e8-8043-4e57-a70a-7acfba5dd9fe",
             "timeoutInMinutes": 300
