@@ -25,7 +25,7 @@ jobs:
           --header 'Content-Type: application/json' \
           --header 'X-Tricentis: OK' \
           --header 'Accept-Language: de' \
-          --header 'Authorization: Bearer ${{ACCESS_TOKEN}}' \
+          --header 'Authorization: Bearer ${{env.ACCESS_TOKEN}}' \
           --data-raw '{
             "flowId": "fad967e8-8043-4e57-a70a-7acfba5dd9fe",
             "timeoutInMinutes": 300
