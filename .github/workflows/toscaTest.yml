@@ -17,5 +17,14 @@ jobs:
           -o response.json
       - name: read accesstoken
         run: ACCESS_TOKEN=$(cat response.json | jq .access_token) & cat response.json | jq .access_token
-      - name: print access token
-        run: echo $ACCESS_TOKEN
+      - name: trigger test on agent
+        run: |
+          curl --location --request POST 'https://fhbgld.my.tricentis.com/default/_e2g/api/flowExecutions' \
+          --header 'Content-Type: application/json' \
+          --header 'X-Tricentis: OK' \
+          --header 'Accept-Language: de' \
+          --header 'Authorization: Bearer $(cat response.json | jq .access_token)' \
+          --data-raw '{
+            "flowId": "fad967e8-8043-4e57-a70a-7acfba5dd9fe",
+            "timeoutInMinutes": 300
+          }'
