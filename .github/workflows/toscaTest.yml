@@ -18,4 +18,4 @@ jobs:
       - name: read accesstoken
         run: ACCESS_TOKEN=$(cat response.json | jq .access_token)
       - name: print access token
-        run: echo ACCESS_TOKEN
+        run: echo $ACCESS_TOKEN
