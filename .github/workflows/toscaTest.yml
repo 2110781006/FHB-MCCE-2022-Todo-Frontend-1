@@ -16,11 +16,11 @@ jobs:
           --data-urlencode 'scope=E2GApi' \
           -o response.json
 
-      - name: trigger test on agent
+      - name: save access token
         run: echo "ACCESS_TOKEN=$(cat response.json | jq -r .access_token)" >> $GITHUB_ENV
-      - name: test
+      - name: upload testartifact
         run: echo ${{ env.ACCESS_TOKEN }}
-      - name: x
+      - name: trigger test on agent
         run: |
           curl --location --request POST 'https://fhbgld.my.tricentis.com/default/_e2g/api/flowExecutions' \
           --header 'Content-Type: application/json' \
@@ -28,6 +28,6 @@ jobs:
           --header 'Accept-Language: de' \
           --header 'Authorization: Bearer ${{env.ACCESS_TOKEN}}' \
           --data-raw '{
-            "flowId": "fad967e8-8043-4e57-a70a-7acfba5dd9fe",
+            "flowId": "f5bbb51a-8205-4655-9c0b-5f44eccff18c",
             "timeoutInMinutes": 300
           }'
