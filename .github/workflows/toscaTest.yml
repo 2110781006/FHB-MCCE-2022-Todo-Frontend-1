@@ -13,4 +13,8 @@ jobs:
           --data-urlencode 'grant_type=client_credentials' \
           --data-urlencode 'client_id=E2G_Agents' \
           --data-urlencode 'client_secret=${{ secrets.CLIENT_SECRET }}' \
-          --data-urlencode 'scope=E2GApi'
+          --data-urlencode 'scope=E2GApi' \
+          -o response.json
+      - name: read accesstoken
+        run: ACCESS_TOKEN=$(cat response.json | jq .access_token)
+        run: echo ACCESS_TOKEN
