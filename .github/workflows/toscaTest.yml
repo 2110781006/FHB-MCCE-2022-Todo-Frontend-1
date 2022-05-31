@@ -1,0 +1,15 @@
+name: Tosca Test
+on: [push]
+jobs:
+  test:
+    runs-on: "ubuntu-latest"
+    steps:    
+      - name: get accesstoken
+      run: |
+        curl --location --request POST 'https://fhbgld.oktapreview.com/oauth2/default/v1/token' \
+        --header 'Content-Type: application/x-www-form-urlencoded' \
+        --header 'Cookie: JSESSIONID=5D9B4CFA4A71FA9459625E8B481AC9D5' \
+        --data-urlencode 'grant_type=client_credentials' \
+        --data-urlencode 'client_id=E2G_Agents' \
+        --data-urlencode 'client_secret=${{ secrets.CLIENT_SECRET }}' \
+        --data-urlencode 'scope=E2GApi'
